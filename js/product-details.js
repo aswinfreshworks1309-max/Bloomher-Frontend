@@ -1,8 +1,8 @@
 // Usage: Manages the detailed view of a single product, including features, size selection, and cart/buy actions.
 
 // Web addresses for cart and products
-const CART_API_URL = `https://bloomher-backend.onrender.com/cart`;
-const PRODUCT_API_URL = `https://bloomher-backend.onrender.com/products`;
+const CART_API_URL = `${window.API_BASE_URL}/cart`;
+const PRODUCT_API_URL = `${window.API_BASE_URL}/products`;
 
 const userId = localStorage.getItem("user_id");
 const token = localStorage.getItem("access_token");
@@ -29,7 +29,8 @@ const productContent = document.getElementById("productContent");
 async function fetchProductDetails() {
   // If there's no product ID, we can't do anything
   if (!productId) {
-    if (loadingContent) loadingContent.textContent = "Error: No product ID provided.";
+    if (loadingContent)
+      loadingContent.textContent = "Error: No product ID provided.";
     return;
   }
 
@@ -50,7 +51,8 @@ async function fetchProductDetails() {
       productImage.alt = product.name;
     }
     if (productPrice) productPrice.textContent = `₹${product.price}`;
-    if (productDescription) productDescription.textContent = product.description;
+    if (productDescription)
+      productDescription.textContent = product.description;
 
     // Build the star ratings
     const starSpan = document.querySelector(".rating .stars");
@@ -59,7 +61,8 @@ async function fetchProductDetails() {
       const fullStars = Math.floor(rating);
       const halfStar = rating % 1 >= 0.5 ? 1 : 0;
       const emptyStars = 5 - fullStars - halfStar;
-      starSpan.textContent = "★".repeat(fullStars) + (halfStar ? "½" : "") + "☆".repeat(emptyStars);
+      starSpan.textContent =
+        "★".repeat(fullStars) + (halfStar ? "½" : "") + "☆".repeat(emptyStars);
     }
 
     // Change the title of the tab in the browser
@@ -73,17 +76,28 @@ async function fetchProductDetails() {
       // Figure out if features are a list or just a text block
       if (Array.isArray(product.features)) {
         features = product.features;
-      } else if (typeof product.features === 'string' && product.features.trim() !== "") {
-        features = product.features.split(/\r?\n|,/).map(f => f.trim()).filter(f => f !== "");
+      } else if (
+        typeof product.features === "string" &&
+        product.features.trim() !== ""
+      ) {
+        features = product.features
+          .split(/\r?\n|,/)
+          .map((f) => f.trim())
+          .filter((f) => f !== "");
       }
 
       // If no features are given, use some default ones
       if (features.length === 0) {
-        features = ["100% Certified Organic Cotton", "Breathable & Chemical-Free", "Ultra-Absorbent Core", "Eco-friendly & Biodegradable"];
+        features = [
+          "100% Certified Organic Cotton",
+          "Breathable & Chemical-Free",
+          "Ultra-Absorbent Core",
+          "Eco-friendly & Biodegradable",
+        ];
       }
 
       // Add each feature to the HTML string
-      features.forEach(f => {
+      features.forEach((f) => {
         featuresHtml += `<div class="feature-item"><span class="checkmark">✓</span><span>${f}</span></div>`;
       });
       // Put the features into the box on the page
@@ -93,7 +107,6 @@ async function fetchProductDetails() {
     // Hide the "Loading..." text and show the actual product info
     if (loadingContent) loadingContent.style.display = "none";
     if (productContent) productContent.style.display = "block";
-
   } catch (err) {
     // If it fails, show an error on the page
     if (loadingContent) {
@@ -121,7 +134,8 @@ async function addToCart() {
   }
 
   // Get the size chosen by the user (check which radio button is selected)
-  const selectedSize = document.querySelector('input[name="size"]:checked')?.value || "Regular";
+  const selectedSize =
+    document.querySelector('input[name="size"]:checked')?.value || "Regular";
 
   try {
     // Ask the server to save these items to the cart
@@ -129,12 +143,12 @@ async function addToCart() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}` // Show our secret token
+        Authorization: `Bearer ${token}`, // Show our secret token
       },
       body: JSON.stringify({
         product_id: parseInt(productId),
         quantity,
-        size: selectedSize
+        size: selectedSize,
       }),
     });
 
@@ -166,8 +180,12 @@ async function buyNow() {
   }
 
   // Get quantity and size
-  let quantity = (parseInt(quantityInput.value) || 1) >= 99 ? 98 : (parseInt(quantityInput.value) || 1);
-  const selectedSize = document.querySelector('input[name="size"]:checked')?.value || "Regular";
+  let quantity =
+    (parseInt(quantityInput.value) || 1) >= 99
+      ? 98
+      : parseInt(quantityInput.value) || 1;
+  const selectedSize =
+    document.querySelector('input[name="size"]:checked')?.value || "Regular";
 
   // Package all product information for the checkout page
   const productData = {
@@ -190,10 +208,17 @@ async function buyNow() {
 
 // When the page is finished loading...
 document.addEventListener("DOMContentLoaded", () => {
- 
   fetchProductDetails();
 
-  if (addToCartBtn) addToCartBtn.addEventListener("click", e => { e.preventDefault(); addToCart(); });
+  if (addToCartBtn)
+    addToCartBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      addToCart();
+    });
 
-  if (buyNowBtn) buyNowBtn.addEventListener("click", e => { e.preventDefault(); buyNow(); });
+  if (buyNowBtn)
+    buyNowBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      buyNow();
+    });
 });

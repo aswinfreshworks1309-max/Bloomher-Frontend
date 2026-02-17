@@ -35,14 +35,11 @@ signupForm.addEventListener("submit", async (e) => {
 
   try {
     // Send the user details to the server to create a new account
-    const response = await fetch(
-      `https://bloomher-backend.onrender.com/users/signup`,
-      {
-        method: "POST", // Use POST to send new information
-        headers: { "Content-Type": "application/json" }, // Tell the server we're sending JSON
-        body: JSON.stringify({ name, email, password }), // Send the name, email, and password
-      },
-    );
+    const response = await fetch(`${window.API_BASE_URL}/users/signup`, {
+      method: "POST", // Use POST to send new information
+      headers: { "Content-Type": "application/json" }, // Tell the server we're sending JSON
+      body: JSON.stringify({ name, email, password }), // Send the name, email, and password
+    });
 
     // Get the answer from the server
     const data = await response.json();

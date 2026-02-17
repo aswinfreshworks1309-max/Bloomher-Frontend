@@ -13,7 +13,7 @@ if (userRole !== "admin") {
 }
 
 // The backend server address
-const BASE_URL = "https://bloomher-backend.onrender.com";
+const BASE_URL = window.API_BASE_URL;
 
 //  2. Sidebar Navigation & Initialization
 // Wait for the page to load

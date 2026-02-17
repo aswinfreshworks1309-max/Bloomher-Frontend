@@ -34,14 +34,11 @@ loginForm.addEventListener("submit", async (e) => {
 
   try {
     // Send the email and password to the server to check them
-    const response = await fetch(
-      `https://bloomher-backend.onrender.com/users/login`,
-      {
-        method: "POST", // Use POST to send data securely
-        headers: { "Content-Type": "application/json" }, // Tell the server we are sending JSON
-        body: JSON.stringify({ email, password }), // Convert the data to a text format for sending
-      },
-    );
+    const response = await fetch(`${window.API_BASE_URL}/users/login`, {
+      method: "POST", // Use POST to send data securely
+      headers: { "Content-Type": "application/json" }, // Tell the server we are sending JSON
+      body: JSON.stringify({ email, password }), // Convert the data to a text format for sending
+    });
 
     // Get the answer back from the server
     const data = await response.json();

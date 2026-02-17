@@ -1,9 +1,9 @@
 // Usage: Displays the product grid, handles "Add to Cart" and "Buy Now" actions from the main list.
 
 // The web address where the product information lives
-const API_URL = `https://bloomher-backend.onrender.com/products`;
+const API_URL = `${window.API_BASE_URL}/products`;
 // The web address for the shopping cart
-const CART_API_URL = `https://bloomher-backend.onrender.com/cart`;
+const CART_API_URL = `${window.API_BASE_URL}/cart`;
 // The part of the page where products will be shown
 const productsGrid = document.querySelector(".products-grid");
 

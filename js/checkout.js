@@ -1,8 +1,8 @@
 // Usage: Processes orders, manages payment methods, and handles the transition from cart to order placement.
 
 // Web addresses for orders and payments
-const ORDER_API_URL = `https://bloomher-backend.onrender.com/orders`;
-const PAYMENT_API_URL = `https://bloomher-backend.onrender.com/payments`;
+const ORDER_API_URL = `${window.API_BASE_URL}/orders`;
+const PAYMENT_API_URL = `${window.API_BASE_URL}/payments`;
 
 // Buttons and user information
 const placeOrderBtn = document.querySelector(".place-order-btn");
@@ -69,7 +69,7 @@ async function renderCartSummary() {
 
   try {
     // Ask the server for the latest cart
-    const res = await fetch(`https://bloomher-backend.onrender.com/cart/`, {
+    const res = await fetch(`${window.API_BASE_URL}/cart/`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     const items = await res.json();
@@ -213,7 +213,7 @@ async function createOrder() {
 // Function to turn every item in the cart into a real order
 async function createCartOrder() {
   try {
-    const res = await fetch(`https://bloomher-backend.onrender.com/cart/`, {
+    const res = await fetch(`${window.API_BASE_URL}/cart/`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     const items = await res.json();
