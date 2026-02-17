@@ -1,149 +1,179 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Product Details - BLOOMHER</title>
     <link rel="stylesheet" href="../styles/regularflow.css" />
     <style>
-        /* Ensure image handles different aspect ratios nicely */
-        .product-image-container {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
+      /* Ensure image handles different aspect ratios nicely */
+      .product-image-container {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
 
-        .product-image-container img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
+      .product-image-container img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
 
-        .loading-spinner {
-            text-align: center;
-            padding: 50px;
-            font-size: 1.2rem;
-            color: #b23a6f;
-        }
+      .loading-spinner {
+        text-align: center;
+        padding: 50px;
+        font-size: 1.2rem;
+        color: #b23a6f;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- Navigation -->
     <nav class="navbar">
-        <div class="logo"><a href="../index.html">BLOOMHER</a></div>
-        <ul class="nav-links">
-            <li><a href="./product.html">ORGANIC PADS</a></li>
-            <li><a href="./irregular.html">IRREGULAR PERIODS</a></li>
-        </ul>
-        <div class="nav-buttons">
-            <div id="authLinks">
-                <a href="./login.html" class="btn-login">Login</a>
-                <a href="./admin.html" class="btn-admin" style="display: none;">Admin</a>
-            </div>
-            <button class="btn-cart">
-                <a href="./card.html" style="color: #ffffff">🛒 Cart</a>
-            </button>
+      <div class="logo"><a href="../index.html">BLOOMHER</a></div>
+      <ul class="nav-links">
+        <li><a href="./product.html">ORGANIC PADS</a></li>
+        <li><a href="./irregular.html">IRREGULAR PERIODS</a></li>
+      </ul>
+      <div class="nav-buttons">
+        <div id="authLinks">
+          <a href="./login.html" class="btn-login">Login</a>
+          <a href="./admin.html" class="btn-admin" style="display: none"
+            >Admin</a
+          >
         </div>
+        <button class="btn-cart">
+          <a href="./card.html" style="color: #ffffff">🛒 Cart</a>
+        </button>
+      </div>
     </nav>
 
-    <div id="loadingContent" class="loading-spinner">Loading product details...</div>
+    <div id="loadingContent" class="loading-spinner">
+      Loading product details...
+    </div>
 
-    <div class="fullscreen-container" id="productContent" style="display: none;">
-        <div class="container">
-            <div class="product-grid">
-                <div class="product-left">
-                    <div class="product-image-container">
-                        <img id="productImage" src="" alt="Product Image" />
-                    </div>
-                </div>
-
-                <div class="product-right">
-                    <h1 id="productName">Product Name</h1>
-
-                    <div class="rating">
-                        <span class="stars">★★★★★</span>
-                    </div>
-
-                    <div class="price" id="productPrice">₹0</div>
-
-                    <p class="description" id="productDescription">
-                        Description loading...
-                    </p>
-
-                    <div class="features-box" id="featuresBox">
-                        <h2 class="features-title">Key Features</h2>
-                        <!-- Features will be injected here -->
-                    </div>
-
-                    <div class="size-section">
-                        <div class="size-label">Select Size:</div>
-                        <div class="size-options">
-                            <label class="size-option">
-                                <input type="radio" name="size" class="size-radio" value="Small" />
-                                <span class="size-btn">Small</span>
-                            </label>
-                            <label class="size-option">
-                                <input type="radio" name="size" class="size-radio" value="Regular" checked />
-                                <span class="size-btn">Regular</span>
-                            </label>
-                            <label class="size-option">
-                                <input type="radio" name="size" class="size-radio" value="Large" />
-                                <span class="size-btn">Large</span>
-                            </label>
-                            <label class="size-option">
-                                <input type="radio" name="size" class="size-radio" value="XL" />
-                                <span class="size-btn">XL</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="quantity-section">
-                        <div class="quantity-label">Quantity:</div>
-                        <input type="number" id="productQuantity" class="quantity-input" value="1" min="1" max="98" />
-                    </div>
-
-                    <div class="button-group">
-                        <button class="btn btn-add" id="addToCartBtn">Add to Cart</button>
-                        <button class="btn btn-buy" id="buyNowBtn">Buy Now</button>
-                    </div>
-                </div>
+    <div class="fullscreen-container" id="productContent" style="display: none">
+      <div class="container">
+        <div class="product-grid">
+          <div class="product-left">
+            <div class="product-image-container">
+              <img id="productImage" src="" alt="Product Image" />
             </div>
+          </div>
+
+          <div class="product-right">
+            <h1 id="productName">Product Name</h1>
+
+            <div class="rating">
+              <span class="stars">★★★★★</span>
+            </div>
+
+            <div class="price" id="productPrice">₹0</div>
+
+            <p class="description" id="productDescription">
+              Description loading...
+            </p>
+
+            <div class="features-box" id="featuresBox">
+              <h2 class="features-title">Key Features</h2>
+              <!-- Features will be injected here -->
+            </div>
+
+            <div class="size-section">
+              <div class="size-label">Select Size:</div>
+              <div class="size-options">
+                <label class="size-option">
+                  <input
+                    type="radio"
+                    name="size"
+                    class="size-radio"
+                    value="Small"
+                  />
+                  <span class="size-btn">Small</span>
+                </label>
+                <label class="size-option">
+                  <input
+                    type="radio"
+                    name="size"
+                    class="size-radio"
+                    value="Regular"
+                    checked
+                  />
+                  <span class="size-btn">Regular</span>
+                </label>
+                <label class="size-option">
+                  <input
+                    type="radio"
+                    name="size"
+                    class="size-radio"
+                    value="Large"
+                  />
+                  <span class="size-btn">Large</span>
+                </label>
+                <label class="size-option">
+                  <input
+                    type="radio"
+                    name="size"
+                    class="size-radio"
+                    value="XL"
+                  />
+                  <span class="size-btn">XL</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="quantity-section">
+              <div class="quantity-label">Quantity:</div>
+              <input
+                type="number"
+                id="productQuantity"
+                class="quantity-input"
+                value="1"
+                min="1"
+                max="98"
+              />
+            </div>
+
+            <div class="button-group">
+              <button class="btn btn-add" id="addToCartBtn">Add to Cart</button>
+              <button class="btn btn-buy" id="buyNowBtn">Buy Now</button>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
 
     <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>BLOOMHER</h3>
-                <p>
-                    Dedicated to empowering women with knowledge, quality products, and
-                    support for their menstrual health journey.
-                </p>
-            </div>
-            <div class="footer-section">
-                <h3>Resources</h3>
-                <ul class="footer-links">
-                    <li><a href="./irregular.html">Period Education</a></li>
-                    <li><a href="./lifestyle.html">Health Articles</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Company</h3>
-                <ul class="footer-links">
-                    <li><a href="./contact.html">Contact Us</a></li>
-                </ul>
-            </div>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>BLOOMHER</h3>
+          <p>
+            Dedicated to empowering women with knowledge, quality products, and
+            support for their menstrual health journey.
+          </p>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Bloomher. All rights reserved.</p>
+        <div class="footer-section">
+          <h3>Resources</h3>
+          <ul class="footer-links">
+            <li><a href="./irregular.html">Period Education</a></li>
+            <li><a href="./lifestyle.html">Health Articles</a></li>
+          </ul>
         </div>
+        <div class="footer-section">
+          <h3>Company</h3>
+          <ul class="footer-links">
+            <li><a href="./contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Bloomher. All rights reserved.</p>
+      </div>
     </footer>
 
     <script src="../js/config.js"></script>
     <script src="../js/product-details.js"></script>
     <script src="../js/auth_ui.js"></script>
-</body>
-
+  </body>
 </html>

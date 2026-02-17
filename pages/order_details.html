@@ -1,480 +1,534 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Checkout - BloomHer</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
 
-        body {
-            background-color: #f9f5f0;
-            color: #333;
-            line-height: 1.6;
-        }
+      body {
+        background-color: #f9f5f0;
+        color: #333;
+        line-height: 1.6;
+      }
 
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-            background-color: white;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        background-color: white;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #b32e4d;
-        }
+      .logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #b32e4d;
+      }
 
-        nav a {
-            margin: 0 1rem;
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-        }
+      nav a {
+        margin: 0 1rem;
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+      }
 
-        .auth a {
-            margin: 0 0.5rem;
-            text-decoration: none;
-            color: #333;
-        }
+      .auth a {
+        margin: 0 0.5rem;
+        text-decoration: none;
+        color: #333;
+      }
 
-        .cart-btn {
-            background-color: #b32e4d;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+      .cart-btn {
+        background-color: #b32e4d;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        cursor: pointer;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
 
+      .container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        display: flex;
+        gap: 2rem;
+        padding: 0 2rem;
+      }
+
+      .left-column {
+        flex: 1;
+        background-color: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .right-column {
+        width: 350px;
+        background-color: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        position: sticky;
+        top: 2rem;
+      }
+
+      h2 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        color: #333;
+        border-bottom: 2px solid #b32e4d;
+        padding-bottom: 0.5rem;
+      }
+
+      .section {
+        margin-bottom: 2rem;
+      }
+
+      .form-group {
+        margin-bottom: 1rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        font-size: 0.9rem;
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+      }
+
+      .form-control:focus {
+        outline: none;
+        border-color: #b32e4d;
+      }
+
+      .form-row {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .form-group.half {
+        flex: 1;
+      }
+
+      .checkbox-label {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .checkbox-label input[type="checkbox"] {
+        accent-color: #b32e4d;
+      }
+
+      .shipping-method {
+        background-color: #f5f5f5;
+        padding: 1rem;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        color: #666;
+        text-align: center;
+      }
+
+      .payment-method {
+        background-color: #f9f5f0;
+        padding: 1rem;
+        border: 2px solid #b32e4d;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+      }
+
+      .payment-method-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.5rem;
+      }
+
+      .payment-method-icons {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .payment-method-icons img {
+        height: 20px;
+        width: auto;
+      }
+
+      .payment-info {
+        text-align: center;
+        font-size: 0.85rem;
+        color: #666;
+        margin-top: 1rem;
+      }
+
+      .billing-address {
+        margin-top: 1.5rem;
+      }
+
+      .radio-option {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+        padding: 0.5rem;
+        border: 1px solid #eee;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+
+      .radio-option input[type="radio"] {
+        accent-color: #b32e4d;
+      }
+
+      .radio-option.selected {
+        border-color: #b32e4d;
+        background-color: #fdf2f8;
+      }
+
+      .pay-now-btn {
+        width: 100%;
+        padding: 1rem;
+        background-color: #b32e4d;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-top: 1rem;
+      }
+
+      .pay-now-btn:hover {
+        background-color: #9a2640;
+      }
+
+      /* Order Summary */
+      .order-item {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem 0;
+        border-bottom: 1px solid #eee;
+      }
+
+      .order-item img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 5px;
+      }
+
+      .order-item-details {
+        flex: 1;
+      }
+
+      .order-item-details h3 {
+        font-size: 0.9rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .order-item-details p {
+        font-size: 0.85rem;
+        color: #666;
+      }
+
+      .order-summary {
+        margin-top: 1.5rem;
+      }
+
+      .summary-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 0;
+      }
+
+      .summary-total {
+        font-weight: bold;
+        font-size: 1.2rem;
+        color: #b32e4d;
+        border-top: 2px solid #b32e4d;
+        padding-top: 0.5rem;
+        margin-top: 0.5rem;
+      }
+
+      .discount-input {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 1rem;
+      }
+
+      .discount-input input {
+        flex: 1;
+      }
+
+      .discount-input button {
+        background-color: #f0f0f0;
+        border: 1px solid #ddd;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .discount-input button:hover {
+        background-color: #e0e0e0;
+      }
+
+      .sign-in-link {
+        float: right;
+        font-size: 0.9rem;
+        color: #b32e4d;
+        text-decoration: none;
+      }
+
+      .sign-in-link:hover {
+        text-decoration: underline;
+      }
+
+      .help-icon {
+        font-size: 0.8rem;
+        color: #999;
+        cursor: help;
+      }
+
+      @media (max-width: 768px) {
         .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            display: flex;
-            gap: 2rem;
-            padding: 0 2rem;
-        }
-
-        .left-column {
-            flex: 1;
-            background-color: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+          flex-direction: column;
+          padding: 1rem;
         }
 
         .right-column {
-            width: 350px;
-            background-color: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-            position: sticky;
-            top: 2rem;
+          width: 100%;
+          position: static;
+          margin-top: 1rem;
         }
-
-        h2 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: #333;
-            border-bottom: 2px solid #b32e4d;
-            padding-bottom: 0.5rem;
-        }
-
-        .section {
-            margin-bottom: 2rem;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: #b32e4d;
-        }
-
-        .form-row {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .form-group.half {
-            flex: 1;
-        }
-
-        .checkbox-label {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .checkbox-label input[type="checkbox"] {
-            accent-color: #b32e4d;
-        }
-
-        .shipping-method {
-            background-color: #f5f5f5;
-            padding: 1rem;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            color: #666;
-            text-align: center;
-        }
-
-        .payment-method {
-            background-color: #f9f5f0;
-            padding: 1rem;
-            border: 2px solid #b32e4d;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-        }
-
-        .payment-method-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
-
-        .payment-method-icons {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .payment-method-icons img {
-            height: 20px;
-            width: auto;
-        }
-
-        .payment-info {
-            text-align: center;
-            font-size: 0.85rem;
-            color: #666;
-            margin-top: 1rem;
-        }
-
-        .billing-address {
-            margin-top: 1.5rem;
-        }
-
-        .radio-option {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 0.5rem;
-            padding: 0.5rem;
-            border: 1px solid #eee;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-
-        .radio-option input[type="radio"] {
-            accent-color: #b32e4d;
-        }
-
-        .radio-option.selected {
-            border-color: #b32e4d;
-            background-color: #fdf2f8;
-        }
-
-        .pay-now-btn {
-            width: 100%;
-            padding: 1rem;
-            background-color: #b32e4d;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin-top: 1rem;
-        }
-
-        .pay-now-btn:hover {
-            background-color: #9a2640;
-        }
-
-        /* Order Summary */
-        .order-item {
-            display: flex;
-            gap: 1rem;
-            padding: 1rem 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .order-item img {
-            width: 60px;
-            height: 60px;
-            object-fit: cover;
-            border-radius: 5px;
-        }
-
-        .order-item-details {
-            flex: 1;
-        }
-
-        .order-item-details h3 {
-            font-size: 0.9rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .order-item-details p {
-            font-size: 0.85rem;
-            color: #666;
-        }
-
-        .order-summary {
-            margin-top: 1.5rem;
-        }
-
-        .summary-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.5rem 0;
-        }
-
-        .summary-total {
-            font-weight: bold;
-            font-size: 1.2rem;
-            color: #b32e4d;
-            border-top: 2px solid #b32e4d;
-            padding-top: 0.5rem;
-            margin-top: 0.5rem;
-        }
-
-        .discount-input {
-            display: flex;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .discount-input input {
-            flex: 1;
-        }
-
-        .discount-input button {
-            background-color: #f0f0f0;
-            border: 1px solid #ddd;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .discount-input button:hover {
-            background-color: #e0e0e0;
-        }
-
-        .sign-in-link {
-            float: right;
-            font-size: 0.9rem;
-            color: #b32e4d;
-            text-decoration: none;
-        }
-
-        .sign-in-link:hover {
-            text-decoration: underline;
-        }
-
-        .help-icon {
-            font-size: 0.8rem;
-            color: #999;
-            cursor: help;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-                padding: 1rem;
-            }
-
-            .right-column {
-                width: 100%;
-                position: static;
-                margin-top: 1rem;
-            }
-        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
-
-
+  <body>
     <main class="container">
-        <!-- Left Column: Form -->
-        <div class="left-column">
-            <h2>Contact</h2>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" class="form-control" placeholder="your@email.com" required>
-            </div>
-            <div class="checkbox-label">
-                <input type="checkbox" id="newsletter" checked>
-                <label for="newsletter">Email me with news and offers</label>
-            </div>
-
-            <h2>Delivery</h2>
-            <div class="form-group">
-                <label for="country">Country/Region</label>
-                <select id="country" class="form-control">
-                    <option value="India" selected>India</option>
-                    <option value="USA">United States</option>
-                    <option value="UK">United Kingdom</option>
-                </select>
-            </div>
-            <div class="form-row">
-                <div class="form-group half">
-                    <label for="first-name">First name</label>
-                    <input type="text" id="first-name" class="form-control" placeholder="John" required>
-                </div>
-                <div class="form-group half">
-                    <label for="last-name">Last name</label>
-                    <input type="text" id="last-name" class="form-control" placeholder="Doe" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="address">Address</label>
-                <input type="text" id="address" class="form-control" placeholder="123 Main Street" required>
-            </div>
-            <div class="form-group">
-                <label for="apartment">Apartment, suite, etc. (optional)</label>
-                <input type="text" id="apartment" class="form-control" placeholder="Apt 4B">
-            </div>
-            <div class="form-row">
-                <div class="form-group half">
-                    <label for="city">City</label>
-                    <input type="text" id="city" class="form-control" placeholder="Anytown" required>
-                </div>
-                <div class="form-group half">
-                    <label for="state">State</label>
-                    <select id="state" class="form-control">
-                        <option value="Tamil Nadu" selected>Tamil Nadu</option>
-                        <option value="Maharashtra">Maharashtra</option>
-                        <option value="Karnataka">Karnataka</option>
-                    </select>
-                </div>
-                <div class="form-group half">
-                    <label for="pincode">PIN code</label>
-                    <input type="text" id="pincode" class="form-control" placeholder="600001" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="phone">Phone</label>
-                <input type="tel" id="phone" class="form-control" placeholder="+91 9876543210" required>
-                <span class="help-icon">?</span>
-            </div>
-            <div class="checkbox-label">
-                <input type="checkbox" id="save-info">
-                <label for="save-info">Save this information for next time</label>
-            </div>
-
-            <h2>Shipping Method</h2>
-            <div class="shipping-method">
-                Enter your shipping address to view available shipping methods.
-            </div>
-
-            <h2>Payment</h2>
-            <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem;">All transactions are secure and encrypted.
-            </p>
-
-            <div class="payment-method">
-                <div class="payment-method-header">
-                    <span>PhonePe Payment Gateway (UPI, Cards & NetBanking)</span>
-                    <div class="payment-method-icons">
-                        <img src="https://via.placeholder.com/20/cccccc?text=UPI" alt="UPI">
-                        <img src="https://via.placeholder.com/20/cccccc?text=VISA" alt="Visa">
-                        <img src="https://via.placeholder.com/20/cccccc?text=MC" alt="Mastercard">
-                        <span>+3</span>
-                    </div>
-                </div>
-                <div class="payment-info">
-                    After clicking “Pay now”, you will be redirected to PhonePe Payment Gateway (UPI, Cards &
-                    NetBanking) to complete your purchase securely.
-                </div>
-            </div>
-
-            <h2>Billing Address</h2>
-            <div class="billing-address">
-                <div class="radio-option selected">
-                    <input type="radio" id="same-billing" name="billing" checked>
-                    <label for="same-billing">Same as shipping address</label>
-                </div>
-                <div class="radio-option">
-                    <input type="radio" id="different-billing" name="billing">
-                    <label for="different-billing">Use a different billing address</label>
-                </div>
-            </div>
-
-            <button class="pay-now-btn">Pay now</button>
+      <!-- Left Column: Form -->
+      <div class="left-column">
+        <h2>Contact</h2>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            class="form-control"
+            placeholder="your@email.com"
+            required
+          />
+        </div>
+        <div class="checkbox-label">
+          <input type="checkbox" id="newsletter" checked />
+          <label for="newsletter">Email me with news and offers</label>
         </div>
 
-        <!-- Right Column: Order Summary -->
-        <div class="right-column">
-            <div class="order-item">
-                <img src="https://via.placeholder.com/60/f0f0f0/333?text=PAD" alt="Product">
-                <div class="order-item-details">
-                    <h3>Evereve Ultra Sanitary Napkin/Pad, X-Large, 30's Pack</h3>
-                    <p>₹171.00</p>
-                </div>
-            </div>
-
-            <div class="discount-input">
-                <input type="text" placeholder="Discount code">
-                <button>Apply</button>
-            </div>
-
-            <div class="order-summary">
-                <div class="summary-row">
-                    <span>Subtotal</span>
-                    <span>₹171.00</span>
-                </div>
-                <div class="summary-row">
-                    <span>Shipping</span>
-                    <span><a href="#" style="color: #666; text-decoration: underline;">Enter shipping address</a></span>
-                </div>
-                <div class="summary-row summary-total">
-                    <span>Total</span>
-                    <span>INR ₹171.00</span>
-                </div>
-            </div>
+        <h2>Delivery</h2>
+        <div class="form-group">
+          <label for="country">Country/Region</label>
+          <select id="country" class="form-control">
+            <option value="India" selected>India</option>
+            <option value="USA">United States</option>
+            <option value="UK">United Kingdom</option>
+          </select>
         </div>
+        <div class="form-row">
+          <div class="form-group half">
+            <label for="first-name">First name</label>
+            <input
+              type="text"
+              id="first-name"
+              class="form-control"
+              placeholder="John"
+              required
+            />
+          </div>
+          <div class="form-group half">
+            <label for="last-name">Last name</label>
+            <input
+              type="text"
+              id="last-name"
+              class="form-control"
+              placeholder="Doe"
+              required
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="address">Address</label>
+          <input
+            type="text"
+            id="address"
+            class="form-control"
+            placeholder="123 Main Street"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="apartment">Apartment, suite, etc. (optional)</label>
+          <input
+            type="text"
+            id="apartment"
+            class="form-control"
+            placeholder="Apt 4B"
+          />
+        </div>
+        <div class="form-row">
+          <div class="form-group half">
+            <label for="city">City</label>
+            <input
+              type="text"
+              id="city"
+              class="form-control"
+              placeholder="Anytown"
+              required
+            />
+          </div>
+          <div class="form-group half">
+            <label for="state">State</label>
+            <select id="state" class="form-control">
+              <option value="Tamil Nadu" selected>Tamil Nadu</option>
+              <option value="Maharashtra">Maharashtra</option>
+              <option value="Karnataka">Karnataka</option>
+            </select>
+          </div>
+          <div class="form-group half">
+            <label for="pincode">PIN code</label>
+            <input
+              type="text"
+              id="pincode"
+              class="form-control"
+              placeholder="600001"
+              required
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input
+            type="tel"
+            id="phone"
+            class="form-control"
+            placeholder="+91 9876543210"
+            required
+          />
+          <span class="help-icon">?</span>
+        </div>
+        <div class="checkbox-label">
+          <input type="checkbox" id="save-info" />
+          <label for="save-info">Save this information for next time</label>
+        </div>
+
+        <h2>Shipping Method</h2>
+        <div class="shipping-method">
+          Enter your shipping address to view available shipping methods.
+        </div>
+
+        <h2>Payment</h2>
+        <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem">
+          All transactions are secure and encrypted.
+        </p>
+
+        <div class="payment-method">
+          <div class="payment-method-header">
+            <span>PhonePe Payment Gateway (UPI, Cards & NetBanking)</span>
+            <div class="payment-method-icons">
+              <img
+                src="https://via.placeholder.com/20/cccccc?text=UPI"
+                alt="UPI"
+              />
+              <img
+                src="https://via.placeholder.com/20/cccccc?text=VISA"
+                alt="Visa"
+              />
+              <img
+                src="https://via.placeholder.com/20/cccccc?text=MC"
+                alt="Mastercard"
+              />
+              <span>+3</span>
+            </div>
+          </div>
+          <div class="payment-info">
+            After clicking “Pay now”, you will be redirected to PhonePe Payment
+            Gateway (UPI, Cards & NetBanking) to complete your purchase
+            securely.
+          </div>
+        </div>
+
+        <h2>Billing Address</h2>
+        <div class="billing-address">
+          <div class="radio-option selected">
+            <input type="radio" id="same-billing" name="billing" checked />
+            <label for="same-billing">Same as shipping address</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" id="different-billing" name="billing" />
+            <label for="different-billing"
+              >Use a different billing address</label
+            >
+          </div>
+        </div>
+
+        <button class="pay-now-btn">Pay now</button>
+      </div>
+
+      <!-- Right Column: Order Summary -->
+      <div class="right-column">
+        <div id="orderItemsSummary">
+          <!-- Individual items will be injected here -->
+          <p style="text-align: center; padding: 10px; color: #999">
+            Loading order items...
+          </p>
+        </div>
+
+        <div class="discount-input">
+          <input type="text" placeholder="Discount code" />
+          <button>Apply</button>
+        </div>
+
+        <div class="order-summary">
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span id="order-subtotal">₹0.00</span>
+          </div>
+          <div class="summary-row">
+            <span>Shipping</span>
+            <span id="order-shipping">---</span>
+          </div>
+          <div class="summary-row summary-total">
+            <span>Total</span>
+            <span id="order-total">₹0.00</span>
+          </div>
+        </div>
+      </div>
     </main>
-
 
     <script src="../js/config.js"></script>
     <script src="../js/auth_ui.js"></script>
-</body>
-
+  </body>
 </html>

@@ -1,212 +1,212 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>User Profile - BloomHer</title>
-    <link rel="stylesheet" href="../styles/product.css">
+    <link rel="stylesheet" href="../styles/product.css" />
     <style>
-        body {
-            background-color: #f9f5f0;
-            /* Match app background */
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      body {
+        background-color: #f9f5f0;
+        /* Match app background */
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .profile-container {
+        max-width: 600px;
+        /* Narrower for mobile-like feel as per image, or standard web width */
+        margin: 2rem auto;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        overflow: hidden;
+      }
+
+      .profile-header-tab {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        border-bottom: 3px solid #b32e4d;
+        color: #b32e4d;
+        font-weight: bold;
+        font-size: 1.2rem;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .profile-header-tab svg {
+        width: 24px;
+        height: 24px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+      }
+
+      .user-info-section {
+        padding: 2rem;
+        text-align: center;
+        /* Or left aligned as per image? Image looks centered or left. Let's try left with some padding */
+        border-bottom: 1px solid #eee;
+      }
+
+      .user-info-section h2 {
+        margin: 0;
+        color: #333;
+        font-size: 1.5rem;
+      }
+
+      .user-info-section p {
+        margin: 0.5rem 0 0;
+        color: #666;
+        font-weight: 500;
+      }
+
+      .profile-menu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .profile-menu li {
+        border-bottom: 1px solid #eee;
+      }
+
+      .profile-menu li:last-child {
+        border-bottom: none;
+      }
+
+      .profile-menu a,
+      .profile-menu button {
+        display: block;
+        width: 100%;
+        padding: 1.5rem 2rem;
+        text-decoration: none;
+        color: #333;
+        font-size: 1.1rem;
+        font-weight: 500;
+        background: none;
+        border: none;
+        text-align: left;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      .profile-menu a:hover,
+      .profile-menu button:hover {
+        background-color: #fcebf0;
+      }
+
+      .profile-menu .menu-item-logout {
+        color: #b32e4d;
+      }
+
+      @media (max-width: 768px) {
+        .navbar {
+          padding: 15px 20px;
+          flex-wrap: wrap;
+        }
+
+        .logo {
+          font-size: 24px;
+          flex: 1;
+        }
+
+        .nav-buttons {
+          width: auto;
+          justify-content: flex-end;
+        }
+
+        .nav-links {
+          width: 100%;
+          order: 3;
+          margin-top: 15px;
+          gap: 15px;
+          justify-content: center;
+          border-top: 1px solid #f0f0f0;
+          padding-top: 10px;
+          display: flex;
+          list-style: none;
         }
 
         .profile-container {
-            max-width: 600px;
-            /* Narrower for mobile-like feel as per image, or standard web width */
-            margin: 2rem auto;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
+          margin: 1rem;
+          width: calc(100% - 2rem);
         }
-
-        .profile-header-tab {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 1rem;
-            border-bottom: 3px solid #b32e4d;
-            color: #b32e4d;
-            font-weight: bold;
-            font-size: 1.2rem;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .profile-header-tab svg {
-            width: 24px;
-            height: 24px;
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 2;
-        }
-
-        .user-info-section {
-            padding: 2rem;
-            text-align: center;
-            /* Or left aligned as per image? Image looks centered or left. Let's try left with some padding */
-            border-bottom: 1px solid #eee;
-        }
-
-        .user-info-section h2 {
-            margin: 0;
-            color: #333;
-            font-size: 1.5rem;
-        }
-
-        .user-info-section p {
-            margin: 0.5rem 0 0;
-            color: #666;
-            font-weight: 500;
-        }
-
-        .profile-menu {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .profile-menu li {
-            border-bottom: 1px solid #eee;
-        }
-
-        .profile-menu li:last-child {
-            border-bottom: none;
-        }
-
-        .profile-menu a,
-        .profile-menu button {
-            display: block;
-            width: 100%;
-            padding: 1.5rem 2rem;
-            text-decoration: none;
-            color: #333;
-            font-size: 1.1rem;
-            font-weight: 500;
-            background: none;
-            border: none;
-            text-align: left;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .profile-menu a:hover,
-        .profile-menu button:hover {
-            background-color: #fcebf0;
-        }
-
-        .profile-menu .menu-item-logout {
-            color: #b32e4d;
-        }
-
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 15px 20px;
-                flex-wrap: wrap;
-            }
-
-            .logo {
-                font-size: 24px;
-                flex: 1;
-            }
-
-            .nav-buttons {
-                width: auto;
-                justify-content: flex-end;
-            }
-
-            .nav-links {
-                width: 100%;
-                order: 3;
-                margin-top: 15px;
-                gap: 15px;
-                justify-content: center;
-                border-top: 1px solid #f0f0f0;
-                padding-top: 10px;
-                display: flex;
-                list-style: none;
-            }
-
-            .profile-container {
-                margin: 1rem;
-                width: calc(100% - 2rem);
-            }
-        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- Navbar -->
     <nav class="navbar">
-        <div class="logo"><a href="../index.html">BLOOMHER</a></div>
-        <ul class="nav-links">
-            <li><a href="./product.html">ORGANIC PADS</a></li>
-            <li><a href="./irregular.html">IRREGULAR PERIODS</a></li>
-        </ul>
-        <div class="nav-buttons">
-            <a href="./profile.html" class="btn-login">Profile</a>
-            <!-- <a href="./admin.html" class="btn-admin">Admin</a> -->
-            <button class="btn-cart">
-                <a href="./card.html" class="cart">🛒 Cart</a>
-            </button>
-        </div>
+      <div class="logo"><a href="../index.html">BLOOMHER</a></div>
+      <ul class="nav-links">
+        <li><a href="./product.html">ORGANIC PADS</a></li>
+        <li><a href="./irregular.html">IRREGULAR PERIODS</a></li>
+      </ul>
+      <div class="nav-buttons">
+        <a href="./profile.html" class="btn-login">Profile</a>
+        <!-- <a href="./admin.html" class="btn-admin">Admin</a> -->
+        <button class="btn-cart">
+          <a href="./card.html" class="cart">🛒 Cart</a>
+        </button>
+      </div>
     </nav>
 
     <div class="profile-container">
-        <!-- Tab Header -->
-        <div class="profile-header-tab">
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
-            </svg>
-            <span>Profile</span>
-        </div>
+      <!-- Tab Header -->
+      <div class="profile-header-tab">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+        <span>Profile</span>
+      </div>
 
-        <!-- User Info -->
-        <div class="user-info-section">
-            <h2 id="display-name">Hello User</h2>
-            <p id="display-email">user@example.com</p>
-        </div>
+      <!-- User Info -->
+      <div class="user-info-section">
+        <h2 id="display-name">Hello User</h2>
+        <p id="display-email">user@example.com</p>
+      </div>
 
-        <!-- Menu Options -->
-        <ul class="profile-menu">
-            <li>
-                <button id="logout-btn" class="menu-item-logout">Logout</button>
-            </li>
-        </ul>
+      <!-- Menu Options -->
+      <ul class="profile-menu">
+        <li>
+          <button id="logout-btn" class="menu-item-logout">Logout</button>
+        </li>
+      </ul>
     </div>
 
     <script src="../js/config.js"></script>
     <script src="../js/auth_ui.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const userId = localStorage.getItem("user_id");
-            const userEmail = localStorage.getItem("user_email");
+      document.addEventListener("DOMContentLoaded", () => {
+        const userId = localStorage.getItem("user_id");
+        const userEmail = localStorage.getItem("user_email");
 
-            if (!userId) {
-                window.location.href = "./login.html";
-                return;
-            }
+        if (!userId) {
+          window.location.href = "./login.html";
+          return;
+        }
 
-            document.getElementById("display-name").textContent = "Hello " + (isNaN(userId) ? userId : "User");
-            if (userEmail) {
-                document.getElementById("display-email").textContent = userEmail;
-            } else {
-                document.getElementById("display-email").textContent = "Email not available";
-            }
+        document.getElementById("display-name").textContent =
+          "Hello " + (isNaN(userId) ? userId : "User");
+        if (userEmail) {
+          document.getElementById("display-email").textContent = userEmail;
+        } else {
+          document.getElementById("display-email").textContent =
+            "Email not available";
+        }
 
-            document.getElementById("logout-btn").addEventListener("click", () => {
-                localStorage.removeItem("user_id");
-                localStorage.removeItem("user_email");
-                localStorage.removeItem("role");
-                alert("Logged out successfully");
-                window.location.href = "../index.html";
-            });
+        document.getElementById("logout-btn").addEventListener("click", () => {
+          localStorage.removeItem("user_id");
+          localStorage.removeItem("user_email");
+          localStorage.removeItem("role");
+          alert("Logged out successfully");
+          window.location.href = "../index.html";
         });
+      });
     </script>
-</body>
-
+  </body>
 </html>

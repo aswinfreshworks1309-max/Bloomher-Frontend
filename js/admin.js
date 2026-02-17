@@ -233,7 +233,9 @@ async function refreshDashboard() {
     document.getElementById("stat-total-users").innerText = users.length;
 
     // 4. Update the "Recent Orders" table with the latest 5 orders
-    const recentOrdersBody = document.querySelector("#dashboard table tbody");
+    const recentOrdersBody = document.getElementById(
+      "dashboardRecentOrdersBody",
+    );
     if (recentOrdersBody) {
       recentOrdersBody.innerHTML = "";
       orders

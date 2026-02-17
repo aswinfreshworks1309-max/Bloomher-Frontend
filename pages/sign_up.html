@@ -1,88 +1,107 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up - BLOOMHER</title>
+    <link rel="stylesheet" href="../styles/sign_up.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sign Up - BLOOMHER</title>
-  <link rel="stylesheet" href="../styles/sign_up.css" />
-</head>
-
-<body>
-  <!-- Navigation -->
-  <nav class="navbar">
-    <div class="logo"><a href="../index.html">BLOOMHER</a></div>
-    <ul class="nav-links">
-      <li><a href="./product.html">ORGANIC PADS</a></li>
-      <!-- <li><a href="./pages/mhd.html">MHD</a></li> -->
-      <li><a href="./irregular.html">IRREGULAR PERIODS</a></li>
-    </ul>
-    <div class="nav-buttons">
-      <a href="./login.html" class="btn-login">Login</a>
-      <a href="./admin.html" class="btn-admin" style="display: none;">Admin</a>
-      <button class="btn-cart">
-        <a href="./card.html" style="color: #ffffff">🛒 Cart</a>
-      </button>
-    </div>
-  </nav>
-  <div class="main-content">
-    <div class="signup-container">
-      <div class="logo">
-        <h1>SIGN UP</h1>
-        <p>Create your account</p>
-      </div>
-
-      <form id="signupForm">
-        <div class="form-group">
-          <label for="fullname">Full Name</label>
-          <input type="text" id="fullname" placeholder="Enter your full name" required />
-        </div>
-
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" placeholder="Enter your email" required />
-        </div>
-
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" placeholder="Create a password" required />
-        </div>
-
-        <div class="form-group">
-          <label for="confirm-password">Confirm Password</label>
-          <input type="password" id="confirm-password" placeholder="Confirm your password" required />
-        </div>
-
-        <div class="checkbox-group">
-          <input type="checkbox" id="terms" required />
-          <label for="terms">I agree to the <a href="#">Terms & Conditions</a></label>
-        </div>
-
-        <button type="submit" class="signup-btn">
-          Create Account
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="logo"><a href="../index.html">BLOOMHER</a></div>
+      <ul class="nav-links">
+        <li><a href="./product.html">ORGANIC PADS</a></li>
+        <!-- <li><a href="./pages/mhd.html">MHD</a></li> -->
+        <li><a href="./irregular.html">IRREGULAR PERIODS</a></li>
+      </ul>
+      <div class="nav-buttons">
+        <a href="./login.html" class="btn-login">Login</a>
+        <a href="./admin.html" class="btn-admin" style="display: none">Admin</a>
+        <button class="btn-cart">
+          <a href="./card.html" style="color: #ffffff">🛒 Cart</a>
         </button>
-      </form>
-
-      <div class="divider">
-        <span>OR</span>
       </div>
+    </nav>
+    <div class="main-content">
+      <div class="signup-container">
+        <div class="logo">
+          <h1>SIGN UP</h1>
+          <p>Create your account</p>
+        </div>
 
-      <div class="login-link">
-        Already have an account? <a href="./login.html">Log In</a>
+        <form id="signupForm">
+          <div class="form-group">
+            <label for="fullname">Full Name</label>
+            <input
+              type="text"
+              id="fullname"
+              placeholder="Enter your full name"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Create a password"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="confirm-password">Confirm Password</label>
+            <input
+              type="password"
+              id="confirm-password"
+              placeholder="Confirm your password"
+              required
+            />
+          </div>
+
+          <div class="checkbox-group">
+            <input type="checkbox" id="terms" required />
+            <label for="terms"
+              >I agree to the <a href="#">Terms & Conditions</a></label
+            >
+          </div>
+
+          <button type="submit" class="signup-btn">Create Account</button>
+        </form>
+
+        <div class="divider">
+          <span>OR</span>
+        </div>
+
+        <div class="login-link">
+          Already have an account? <a href="./login.html">Log In</a>
+        </div>
       </div>
     </div>
-  </div>
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-section">
-        <h3>BLOOMHER</h3>
-        <p>
-          Dedicated to empowering women with knowledge, quality products, and
-          support for their menstrual health journey.
-        </p>
-      </div>
-      <!-- <div class="footer-section">
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>BLOOMHER</h3>
+          <p>
+            Dedicated to empowering women with knowledge, quality products, and
+            support for their menstrual health journey.
+          </p>
+        </div>
+        <!-- <div class="footer-section">
                 <h3>Products</h3>
                 <ul>
                     <li><a href="#">Organic Pads</a></li>
@@ -91,33 +110,31 @@
                     <li><a href="#">Wellness Products</a></li>
                 </ul>
             </div> -->
-      <div class="footer-section">
-        <h3>Resources</h3>
-        <ul>
-          <li><a href="./irregular.html">Period Education</a></li>
-          <li><a href="./lifestyle.html">Health Articles</a></li>
-          <!-- <li><a href="#">FAQs</a></li>
+        <div class="footer-section">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="./irregular.html">Period Education</a></li>
+            <li><a href="./lifestyle.html">Health Articles</a></li>
+            <!-- <li><a href="#">FAQs</a></li>
                     <li><a href="#">Community</a></li> -->
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h3>Company</h3>
-        <ul>
-          <li><a href="./contact.html">Contact Us</a></li>
-          <!-- <li><a href="#">Contact</a></li> -->
-          <!-- <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="./contact.html">Contact Us</a></li>
+            <!-- <li><a href="#">Contact</a></li> -->
+            <!-- <li><a href="#">Privacy Policy</a></li>
                     <li><a href="#">Terms</a></li> -->
-        </ul>
+          </ul>
+        </div>
       </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2025 Bloomher. All rights reserved.</p>
-    </div>
-  </footer>
-  <script src="../js/config.js"></script>
-  <script src="../js/signup.js"></script>
-  <script src="../js/auth_ui.js"></script>
-
-</body>
-
+      <div class="footer-bottom">
+        <p>&copy; 2025 Bloomher. All rights reserved.</p>
+      </div>
+    </footer>
+    <script src="../js/config.js"></script>
+    <script src="../js/signup.js"></script>
+    <script src="../js/auth_ui.js"></script>
+  </body>
 </html>

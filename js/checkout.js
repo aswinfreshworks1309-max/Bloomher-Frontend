@@ -9,6 +9,16 @@ const placeOrderBtn = document.querySelector(".place-order-btn");
 const userId = localStorage.getItem("user_id");
 const token = localStorage.getItem("access_token");
 
+// Separate function to calculate price based on size (10% increments)
+function calculatePriceBySize(basePrice, size) {
+  let multiplier = 1.0;
+  if (size === "Small") multiplier = 0.9;
+  else if (size === "Regular") multiplier = 1.0;
+  else if (size === "Large") multiplier = 1.1;
+  else if (size === "XL") multiplier = 1.2;
+  return Math.round(basePrice * multiplier);
+}
+
 // Finding spots where we show order details
 const productNameEl = document.getElementById("product-name");
 const productSizeEl = document.getElementById("product-size");
@@ -87,7 +97,11 @@ async function renderCartSummary() {
 
     items.forEach((item) => {
       const product = item.product;
-      const itemTotal = product.price * item.quantity;
+      const itemSize = item.size || "Regular";
+      // Calculate price based on size (10% increments)
+      const pricePerItem = calculatePriceBySize(product.price, itemSize);
+
+      const itemTotal = pricePerItem * item.quantity;
       subtotal += itemTotal;
 
       const itemRow = document.createElement("div");

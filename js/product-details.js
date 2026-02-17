@@ -25,6 +25,27 @@ const buyNowBtn = document.getElementById("buyNowBtn");
 const loadingContent = document.getElementById("loadingContent");
 const productContent = document.getElementById("productContent");
 
+// Variable to store the base price for calculations
+let baseProductPrice = 0;
+
+// Separate function to calculate price based on size (10% increments)
+function updatePriceBySize() {
+  const selectedSize =
+    document.querySelector('input[name="size"]:checked')?.value || "Regular";
+  let multiplier = 1.0;
+
+  if (selectedSize === "Small")
+    multiplier = 0.9; // 10% less
+  else if (selectedSize === "Regular")
+    multiplier = 1.0; // Base price
+  else if (selectedSize === "Large")
+    multiplier = 1.1; // 10% more
+  else if (selectedSize === "XL") multiplier = 1.2; // 20% more
+
+  const calculatedPrice = Math.round(baseProductPrice * multiplier);
+  if (productPrice) productPrice.textContent = `₹${calculatedPrice}`;
+}
+
 // Function to load the product details from the server
 async function fetchProductDetails() {
   // If there's no product ID, we can't do anything
@@ -50,7 +71,13 @@ async function fetchProductDetails() {
       productImage.src = product.image_url;
       productImage.alt = product.name;
     }
-    if (productPrice) productPrice.textContent = `₹${product.price}`;
+
+    // Store original price and set initial display
+    if (productPrice) {
+      baseProductPrice = product.price;
+      updatePriceBySize();
+    }
+
     if (productDescription)
       productDescription.textContent = product.description;
 
@@ -65,15 +92,11 @@ async function fetchProductDetails() {
         "★".repeat(fullStars) + (halfStar ? "½" : "") + "☆".repeat(emptyStars);
     }
 
-    // Change the title of the tab in the browser
-    // document.title = `${product.name} - BLOOMHER`;
-
-    // Build the list of product features (the little checkmarks)
+    // Build the list of product features
     if (featuresBox) {
       let featuresHtml = '<h2 class="features-title">Key Features</h2>';
       let features = [];
 
-      // Figure out if features are a list or just a text block
       if (Array.isArray(product.features)) {
         features = product.features;
       } else if (
@@ -86,7 +109,6 @@ async function fetchProductDetails() {
           .filter((f) => f !== "");
       }
 
-      // If no features are given, use some default ones
       if (features.length === 0) {
         features = [
           "100% Certified Organic Cotton",
@@ -96,11 +118,9 @@ async function fetchProductDetails() {
         ];
       }
 
-      // Add each feature to the HTML string
       features.forEach((f) => {
         featuresHtml += `<div class="feature-item"><span class="checkmark">✓</span><span>${f}</span></div>`;
       });
-      // Put the features into the box on the page
       featuresBox.innerHTML = featuresHtml;
     }
 
@@ -118,32 +138,27 @@ async function fetchProductDetails() {
 
 // Function to add the item to the cart when the button is clicked
 async function addToCart() {
-  // If the user isn't logged in, they can't add to cart
   if (!userId) {
     alert("Please login first!");
     window.location.href = "./login.html";
     return;
   }
 
-  // Get the quantity number chosen by the user
   let quantity = parseInt(quantityInput.value) || 1;
-  // Don't allow more than 98 items
   if (quantity >= 99) {
     quantity = 98;
     quantityInput.value = 98;
   }
 
-  // Get the size chosen by the user (check which radio button is selected)
   const selectedSize =
     document.querySelector('input[name="size"]:checked')?.value || "Regular";
 
   try {
-    // Ask the server to save these items to the cart
     const response = await fetch(`${CART_API_URL}/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`, // Show our secret token
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         product_id: parseInt(productId),
@@ -152,34 +167,28 @@ async function addToCart() {
       }),
     });
 
-    // If it worked, show success
     if (response.ok) {
       alert("Added to cart successfully!");
     } else if (response.status === 401) {
-      // If token expired, login again
       alert("Session expired. Please login again.");
       window.location.href = "./login.html";
     } else {
-      // Otherwise show why it failed
       const errorData = await response.json();
       alert("Failed to add to cart: " + (errorData.detail || "Unknown error"));
     }
   } catch (error) {
-    // Network errors
     alert("Server error. Could not add to cart.");
   }
 }
 
 // Function to handle the "Buy Now" button
 async function buyNow() {
-  // Login required
   if (!userId) {
     alert("Please login first!");
     window.location.href = "./login.html";
     return;
   }
 
-  // Get quantity and size
   let quantity =
     (parseInt(quantityInput.value) || 1) >= 99
       ? 98
@@ -187,22 +196,26 @@ async function buyNow() {
   const selectedSize =
     document.querySelector('input[name="size"]:checked')?.value || "Regular";
 
-  // Package all product information for the checkout page
+  // Calculate the actual price based on size
+  let multiplier = 1.0;
+  if (selectedSize === "Small") multiplier = 0.9;
+  else if (selectedSize === "Regular") multiplier = 1.0;
+  else if (selectedSize === "Large") multiplier = 1.1;
+  else if (selectedSize === "XL") multiplier = 1.2;
+  const currentPrice = Math.round(baseProductPrice * multiplier);
+
   const productData = {
     id: productId,
     name: productName.textContent,
     image: productImage.src,
     selectedSize,
     quantity,
-    price: parseFloat(productPrice.textContent.replace("₹", "")),
+    price: currentPrice,
   };
 
-  // Save to browser memory
   localStorage.setItem("selectedProduct", JSON.stringify(productData));
-  // Remove any old checkout settings
   localStorage.removeItem("checkoutMode");
   localStorage.removeItem("cartTotal");
-  // Go to address page
   window.location.href = "./address.html";
 }
 
@@ -221,4 +234,10 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       buyNow();
     });
+
+  // Watch for size changes to update price dynamically
+  const sizeRadios = document.querySelectorAll('input[name="size"]');
+  sizeRadios.forEach((radio) => {
+    radio.addEventListener("change", updatePriceBySize);
+  });
 });

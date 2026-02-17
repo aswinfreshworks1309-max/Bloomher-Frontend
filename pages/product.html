@@ -1,254 +1,137 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Organic Pads - Bloomher</title>
+    <link rel="stylesheet" href="../styles/product.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Organic Pads - Bloomher</title>
-  <link rel="stylesheet" href="../styles/product.css" />
-</head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="logo"><a href="../index.html">BLOOMHER</a></div>
+      <ul class="nav-links">
+        <li><a href="./product.html">ORGANIC PADS</a></li>
+        <li><a href="./irregular.html">IRREGULAR PERIODS</a></li>
+        <li><a href="./tracking.html" id="tracking-link">MY ORDERS</a></li>
+      </ul>
+      <div class="nav-buttons">
+        <a href="./login.html" class="btn-login">Login</a>
+        <a href="./admin.html" class="btn-admin" style="display: none">Admin</a>
+        <button class="btn-cart">
+          <a href="./card.html" class="cart">🛒 Cart</a>
+        </button>
+      </div>
+    </nav>
 
-<body>
-  <!-- Navigation -->
-  <nav class="navbar">
-    <div class="logo"><a href="../index.html">BLOOMHER</a></div>
-    <ul class="nav-links">
-      <li><a href="./product.html">ORGANIC PADS</a></li>
-      <li><a href="./irregular.html">IRREGULAR PERIODS</a></li>
-      <li><a href="./tracking.html" id="tracking-link">MY ORDERS</a></li>
-    </ul>
-    <div class="nav-buttons">
-      <a href="./login.html" class="btn-login">Login</a>
-      <a href="./admin.html" class="btn-admin" style="display: none">Admin</a>
-      <button class="btn-cart">
-        <a href="./card.html" class="cart">🛒 Cart</a>
-      </button>
-    </div>
-  </nav>
+    <!-- Products Section -->
+    <section class="products-section">
+      <h2 class="section-title">Our Organic Collection</h2>
+      <p class="section-subtitle">Choose the perfect fit for your flow</p>
 
-  <!-- Products Section -->
-  <section class="products-section">
-    <h2 class="section-title">Our Organic Collection</h2>
-    <p class="section-subtitle">Choose the perfect fit for your flow</p>
-
-    <div class="products-grid">
-      <div class="product-card">
-        <div class="product-image">
-          <img src="../assets/regular.png" height="350px" alt="Regular Flow Pads" />
-        </div>
-        <div class="product-info">
-          <h3>Regular Flow Pads</h3>
-          <p>
-            Perfect for light to regular flow days. Ultra-thin with maximum
-            comfort.
+      <div class="products-grid">
+        <!-- Products will be loaded here from the database -->
+        <div
+          id="loadingProducts"
+          style="
+            text-align: center;
+            width: 100%;
+            padding: 50px;
+            grid-column: 1 / -1;
+          "
+        >
+          <p style="font-size: 1.2rem; color: #c41e3a">
+            Loading our organic collection...
           </p>
-          <div class="product-price">₹299</div>
-          <div style="display: flex; justify-content: space-between">
-            <button class="btn-add-cart" style="width: 150px" onclick="addToCart(1)">
-              Add to Cart
-            </button>
-            <button class="btn-buy" style="width: 150px">
-              <a href="./product_detail.html?id=1">Buy Now</a>
-            </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+      <h2 class="section-title">What Makes Us Different</h2>
+
+      <div class="features-list">
+        <div class="feature-item">
+          <div class="feature-icon-box">✓</div>
+          <div class="feature-content">
+            <h3>Certified Organic Materials</h3>
+            <p>
+              Our pads are made with GOTS certified organic cotton, ensuring the
+              highest standards of quality and safety.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon-box">✓</div>
+          <div class="feature-content">
+            <h3>Plastic-Free Packaging</h3>
+            <p>
+              We use 100% biodegradable packaging materials to minimize our
+              environmental footprint.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon-box">✓</div>
+          <div class="feature-content">
+            <h3>No Harmful Chemicals</h3>
+            <p>
+              Free from chlorine bleaching, synthetic fragrances, dyes, and
+              adhesives that can cause irritation.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon-box">✓</div>
+          <div class="feature-content">
+            <h3>Leak-Proof Design</h3>
+            <p>
+              Multi-layer protection with wings and secure adhesive for
+              worry-free confidence all day.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon-box">✓</div>
+          <div class="feature-content">
+            <h3>Gynecologist Approved</h3>
+            <p>
+              Recommended by healthcare professionals for maintaining vaginal pH
+              balance and preventing infections.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon-box">✓</div>
+          <div class="feature-content">
+            <h3>Socially Responsible</h3>
+            <p>
+              For every purchase, we donate pads to underprivileged girls
+              ensuring menstrual health for all.
+            </p>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="product-card">
-        <div class="product-image">
-          <img src="../assets/heavy.png" height="330px" alt="Heavy Flow Pads" />
-        </div>
-        <div class="product-info">
-          <h3>Heavy Flow Pads</h3>
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>BLOOMHER</h3>
           <p>
-            Extra absorbent for heavy flow days. Leak-proof protection up to 8
-            hours.
-          </p>
-          <div class="product-price">₹349</div>
-          <div style="display: flex; justify-content: space-between">
-            <button class="btn-add-cart" style="width: 150px" onclick="addToCart(2)">
-              Add to Cart
-            </button>
-            <button class="btn-buy" style="width: 150px">
-              <a href="./product_detail.html?id=2">Buy Now</a>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <div class="product-image">
-          <img src="../assets/Night.png" height="350px" alt="Night Pads" />
-        </div>
-        <div class="product-info">
-          <h3>Night Pads</h3>
-          <p>
-            Extra-long design for overnight protection. Sleep peacefully
-            without worries.
-          </p>
-          <div class="product-price">₹399</div>
-          <div style="display: flex; justify-content: space-between">
-            <button class="btn-add-cart" style="width: 150px" onclick="addToCart(3)">
-              Add to Cart
-            </button>
-            <button class="btn-buy" style="width: 150px">
-              <a href="./product_detail.html?id=3">Buy Now</a>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <div class="product-image">
-          <img src="../assets/panty linears.png" height="330px" alt="Panty Liners" />
-        </div>
-        <div class="product-info">
-          <h3>Panty Liners</h3>
-          <p>
-            Daily freshness and light protection. Thin, discreet, and
-            comfortable.
-          </p>
-          <div class="product-price">₹199</div>
-          <div style="display: flex; justify-content: space-between">
-            <button class="btn-add-cart" style="width: 150px" onclick="addToCart(4)">
-              Add to Cart
-            </button>
-            <button class="btn-buy" style="width: 150px">
-              <a href="./product_detail.html?id=4">Buy Now</a>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <div class="product-image">
-          <img src="../assets/pack.png" height="330px" alt="Complete Period Kit" />
-        </div>
-        <div class="product-info">
-          <h3>Complete Period Kit</h3>
-          <p>
-            All-in-one pack with regular, heavy, and night pads for complete
-            protection.
-          </p>
-          <div class="product-price">₹899</div>
-          <div style="display: flex; justify-content: space-between">
-            <button class="btn-add-cart" style="width: 150px" onclick="addToCart(5)">
-              Add to Cart
-            </button>
-            <button class="btn-buy" style="width: 150px">
-              <a href="./product_detail.html?id=5">Buy Now</a>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <div class="product-image">
-          <img src="../assets/teen.png" height="330px" alt="Teen Starter Pack" />
-        </div>
-        <div class="product-info">
-          <h3>Teen Starter Pack</h3>
-          <p>
-            Specially designed for first-time users. Gentle and easy to use.
-          </p>
-          <div class="product-price">₹249</div>
-          <div style="display: flex; justify-content: space-between">
-            <button class="btn-add-cart" style="width: 150px" onclick="addToCart(6)">
-              Add to Cart
-            </button>
-            <button class="btn-buy" style="width: 150px">
-              <a href="./product_detail.html?id=6">Buy Now</a>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Features Section -->
-  <section class="features-section">
-    <h2 class="section-title">What Makes Us Different</h2>
-
-    <div class="features-list">
-      <div class="feature-item">
-        <div class="feature-icon-box">✓</div>
-        <div class="feature-content">
-          <h3>Certified Organic Materials</h3>
-          <p>
-            Our pads are made with GOTS certified organic cotton, ensuring the
-            highest standards of quality and safety.
+            Dedicated to empowering women with knowledge, quality products, and
+            support for their menstrual health journey.
           </p>
         </div>
-      </div>
-
-      <div class="feature-item">
-        <div class="feature-icon-box">✓</div>
-        <div class="feature-content">
-          <h3>Plastic-Free Packaging</h3>
-          <p>
-            We use 100% biodegradable packaging materials to minimize our
-            environmental footprint.
-          </p>
-        </div>
-      </div>
-
-      <div class="feature-item">
-        <div class="feature-icon-box">✓</div>
-        <div class="feature-content">
-          <h3>No Harmful Chemicals</h3>
-          <p>
-            Free from chlorine bleaching, synthetic fragrances, dyes, and
-            adhesives that can cause irritation.
-          </p>
-        </div>
-      </div>
-
-      <div class="feature-item">
-        <div class="feature-icon-box">✓</div>
-        <div class="feature-content">
-          <h3>Leak-Proof Design</h3>
-          <p>
-            Multi-layer protection with wings and secure adhesive for
-            worry-free confidence all day.
-          </p>
-        </div>
-      </div>
-
-      <div class="feature-item">
-        <div class="feature-icon-box">✓</div>
-        <div class="feature-content">
-          <h3>Gynecologist Approved</h3>
-          <p>
-            Recommended by healthcare professionals for maintaining vaginal pH
-            balance and preventing infections.
-          </p>
-        </div>
-      </div>
-
-      <div class="feature-item">
-        <div class="feature-icon-box">✓</div>
-        <div class="feature-content">
-          <h3>Socially Responsible</h3>
-          <p>
-            For every purchase, we donate pads to underprivileged girls
-            ensuring menstrual health for all.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-section">
-        <h3>BLOOMHER</h3>
-        <p>
-          Dedicated to empowering women with knowledge, quality products, and
-          support for their menstrual health journey.
-        </p>
-      </div>
-      <!-- <div class="footer-section">
+        <!-- <div class="footer-section">
                 <h3>Products</h3>
                 <ul>
                     <li><a href="#">Organic Pads</a></li>
@@ -257,32 +140,31 @@
                     <li><a href="#">Wellness Products</a></li>
                 </ul>
             </div> -->
-      <div class="footer-section">
-        <h3>Resources</h3>
-        <ul>
-          <li><a href="./irregular.html">Period Education</a></li>
-          <li><a href="./lifestyle.html">Health Articles</a></li>
-          <!-- <li><a href="#">FAQs</a></li>
+        <div class="footer-section">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="./irregular.html">Period Education</a></li>
+            <li><a href="./lifestyle.html">Health Articles</a></li>
+            <!-- <li><a href="#">FAQs</a></li>
                     <li><a href="#">Community</a></li> -->
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h3>Company</h3>
-        <ul>
-          <li><a href="./contact.html">Contact Us</a></li>
-          <!-- <li><a href="#">Contact</a></li> -->
-          <!-- <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="./contact.html">Contact Us</a></li>
+            <!-- <li><a href="#">Contact</a></li> -->
+            <!-- <li><a href="#">Privacy Policy</a></li>
                     <li><a href="#">Terms</a></li> -->
-        </ul>
+          </ul>
+        </div>
       </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2025 Bloomher. All rights reserved.</p>
-    </div>
-  </footer>
-  <script src="../js/config.js"></script>
-  <script src="../js/product.js"></script>
-  <script src="../js/auth_ui.js"></script>
-</body>
-
+      <div class="footer-bottom">
+        <p>&copy; 2025 Bloomher. All rights reserved.</p>
+      </div>
+    </footer>
+    <script src="../js/config.js"></script>
+    <script src="../js/product.js"></script>
+    <script src="../js/auth_ui.js"></script>
+  </body>
 </html>

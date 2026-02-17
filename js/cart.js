@@ -11,6 +11,16 @@ const itemCountEl = document.getElementById("itemCount");
 const userId = localStorage.getItem("user_id");
 const token = localStorage.getItem("access_token");
 
+// Separate function to calculate price based on size (10% increments)
+function calculatePriceBySize(basePrice, size) {
+  let multiplier = 1.0;
+  if (size === "Small") multiplier = 0.9;
+  else if (size === "Regular") multiplier = 1.0;
+  else if (size === "Large") multiplier = 1.1;
+  else if (size === "XL") multiplier = 1.2;
+  return Math.round(basePrice * multiplier);
+}
+
 // If the user is not logged in, show they have an empty cart and hide the content
 if (!userId) {
   document.getElementById("emptyCart").style.display = "block";
@@ -54,8 +64,12 @@ function renderCartItems(cartItems) {
   // For each item in the data...
   cartItems.forEach((item) => {
     const product = item.product;
+    const itemSize = item.size || "Regular";
+    // Calculate price based on size (10% increments)
+    const pricePerItem = calculatePriceBySize(product.price, itemSize);
+
     // Calculate costs
-    const itemTotal = product.price * item.quantity;
+    const itemTotal = pricePerItem * item.quantity;
     subtotal += itemTotal;
     totalItems += item.quantity;
 
@@ -71,7 +85,7 @@ function renderCartItems(cartItems) {
         <div class="item-size">${item.size || "Regular"}</div>
       </div>
       <div class="item-actions">
-        <div class="item-price">₹<span class="item-price-value">${product.price}</span></div>
+        <div class="item-price">₹<span class="item-price-value">${pricePerItem}</span></div>
         <div class="quantity-control" style="display: flex; gap: 10px; align-items: center;">
              <button onclick="updateQuantity(${product.id}, ${item.quantity - 1})" 
                      style="padding: 2px 8px; border: 1px solid #ccc; background: #fff; cursor: pointer; border-radius: 4px;">-</button>
